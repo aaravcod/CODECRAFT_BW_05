@@ -15,7 +15,7 @@ const app = express();
 app.use(express.json());
 app.use("/api/user",authRoutes);
 app.use("/api/room",roomRoutes)
-app.use("/bookings", bookingRoutes);
+app.use("/api/booking", bookingRoutes);
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
