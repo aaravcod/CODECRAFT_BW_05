@@ -1,9 +1,13 @@
 import express from "express";
-import { register ,login } from "../controllers/authController.js";
+import { register, login, getCurrentUser, editUser, deleteUser } from "../controllers/authController.js";
+import { protect, authorizeRoles } from "../middleware/authMiddleware.js";
 
-const router=express.Router();
+router.post("/register", register);
+router.post("/login", login);
+router.get("/me", protect, getCurrentUser);
+router.put("/:id", protect, authorizeRoles("ADMIN"), editUser);
+router.delete("/:id", protect, authorizeRoles("ADMIN"), deleteUser);
 
-router.post("/register",register);
-router.post("/login",login);
+
 
 export default router;
